@@ -6,11 +6,12 @@ Executive-ready briefing site for the Blackbaud leadership discussion on Agentfo
 
 - Executive Summary
 - External Research
-- Capability page: Support Engineer Brief
-- Capability page: Knowledge-Grounded Answers
-- Capability page: Stakeholder Relationship Mapping
-- Capability page: Delegated Action Loop
+- Dedicated capability page: Support Engineer Brief
+- Dedicated capability page: Knowledge-Grounded Answers
+- Dedicated capability page: Stakeholder Relationship Mapping
+- Dedicated capability page: Delegated Action Loop
 - Recommended Decision Path
+- Sidebar capability search (left navigation)
 
 ## Local Preview
 
@@ -35,3 +36,4 @@ Then visit `http://localhost:8080`.
 
 - Hero image is in `assets/hero-blackbaud.png`.
 - Content is written in executive language and intentionally minimizes technical implementation detail.
+- Capability search filters dedicated capability links and supports Enter-to-open first match.

@@ -1,19 +1,36 @@
-const links = Array.from(document.querySelectorAll(".nav-links a"));
-const sections = links
-  .map((link) => document.querySelector(link.getAttribute("href")))
-  .filter(Boolean);
+const navLinks = Array.from(document.querySelectorAll("#primary-nav a"));
+const capabilitySearchInput = document.querySelector("#capability-search-input");
 
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      links.forEach((link) => {
-        const target = link.getAttribute("href").replace("#", "");
-        link.classList.toggle("active", target === entry.target.id);
-      });
+const normalize = (value) => value.toLowerCase().trim();
+const currentPath = window.location.pathname.split("/").pop() || "index.html";
+const currentHash = window.location.hash;
+
+navLinks.forEach((link) => {
+  const href = link.getAttribute("href");
+  if (!href) return;
+  const [path, hash] = href.split("#");
+  const targetPath = path || currentPath;
+  const hashMatch = hash ? `#${hash}` === currentHash : true;
+  const pathMatch = targetPath === currentPath;
+  link.classList.toggle("active", pathMatch && hashMatch);
+});
+
+if (capabilitySearchInput) {
+  capabilitySearchInput.addEventListener("input", () => {
+    const term = normalize(capabilitySearchInput.value);
+    const capabilityLinks = navLinks.filter((link) => link.dataset.capability);
+    capabilityLinks.forEach((link) => {
+      const haystack = normalize(`${link.textContent} ${link.dataset.capability}`);
+      const show = !term || haystack.includes(term);
+      link.style.display = show ? "block" : "none";
     });
-  },
-  { rootMargin: "-30% 0px -58% 0px", threshold: [0, 0.2, 0.5] },
-);
+  });
 
-sections.forEach((section) => observer.observe(section));
+  capabilitySearchInput.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter") return;
+    const visibleCapability = navLinks.find(
+      (link) => link.dataset.capability && link.style.display !== "none",
+    );
+    if (visibleCapability) window.location.href = visibleCapability.href;
+  });
+}
