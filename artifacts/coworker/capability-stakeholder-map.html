@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Capability | Stakeholder Relationship Mapping</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Primary">
+        <div class="brand">
+          <p class="eyebrow">Executive Briefing</p>
+          <h1>Agentforce Coworker</h1>
+          <p class="subtle">Blackbaud Leadership Discussion</p>
+        </div>
+
+        <div class="capability-search">
+          <label for="capability-search-input">Capability Search</label>
+          <input id="capability-search-input" type="search" placeholder="Search capability pages..." />
+        </div>
+
+        <nav class="nav-links" id="primary-nav">
+          <a href="index.html#executive-summary">Executive Summary</a>
+          <a href="index.html#external-research">External Research</a>
+          <a href="index.html#recommended-path">Recommended Decision Path</a>
+          <a href="capability-support-brief.html" data-capability="support engineer brief">
+            Capability: Support Engineer Brief
+          </a>
+          <a href="capability-knowledge-grounding.html" data-capability="knowledge grounded answers">
+            Capability: Knowledge Grounded Answers
+          </a>
+          <a href="capability-stakeholder-map.html" data-capability="stakeholder relationship mapping">
+            Capability: Stakeholder Relationship Mapping
+          </a>
+          <a href="capability-delegated-action.html" data-capability="delegated action loop">
+            Capability: Delegated Action Loop
+          </a>
+        </nav>
+
+        <div class="sidebar-footer">
+          <p>Internal strategic discussion draft for Blackbaud account team use.</p>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <section class="section page-hero">
+          <p class="eyebrow">Capability 3</p>
+          <h2>Stakeholder Relationship Mapping</h2>
+          <p>
+            Synthesize contacts, activity, support history, and opportunity context to expose renewal readiness and
+            relationship gaps before leadership conversations.
+          </p>
+        </section>
+
+        <section class="section">
+          <div class="capability-layout">
+            <article class="card">
+              <h4>Prompt</h4>
+              <p>
+                "Identify decision stakeholders, recent engagement, and open coverage gaps ahead of the renewal
+                discussion so we can prioritize next interactions."
+              </p>
+            </article>
+            <article class="card">
+              <h4>Primary Persona</h4>
+              <p>Renewal Manager; Account Executive; Account Leadership.</p>
+            </article>
+            <article class="card">
+              <h4>Expected Outcome</h4>
+              <p>Higher executive-call readiness with clearer action priorities and fewer blind spots.</p>
+            </article>
+            <article class="card">
+              <h4>Executive Business Value</h4>
+              <p>
+                De-risks renewal execution by making relationship exposure visible early enough to act with intent.
+              </p>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Agentforce Coworker"
+description = "Agentforce Coworker – an executive briefing website for Blackbaud leadership, presenting Agentforce capabilities as a multi-page static site with a sidebar navigation, capability pages, and search."
+version = "1.0.0"
+id = "artifacts/coworker"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22067
+
+[services.development]
+run = "pnpm --filter @workspace/coworker run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/coworker", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/coworker/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22067"
+BASE_PATH = "/"

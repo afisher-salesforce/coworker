@@ -1,6 +1,6 @@
-# [Project name]
+# Agentforce Coworker
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+An executive briefing website presenting Agentforce Coworker capabilities to Blackbaud leadership — a multi-page static site with sidebar navigation, capability search, and four capability deep-dive pages.
 
 ## Run & Operate
 
