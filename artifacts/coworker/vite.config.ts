@@ -33,6 +33,9 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: path.resolve(import.meta.dirname, 'index.html'),
+        executiveSummary: path.resolve(import.meta.dirname, 'executive-summary.html'),
+        externalResearch: path.resolve(import.meta.dirname, 'external-research.html'),
+        decisionPath: path.resolve(import.meta.dirname, 'decision-path.html'),
         supportBrief: path.resolve(import.meta.dirname, 'capability-support-brief.html'),
         knowledgeGrounding: path.resolve(import.meta.dirname, 'capability-knowledge-grounding.html'),
         stakeholderMap: path.resolve(import.meta.dirname, 'capability-stakeholder-map.html'),
