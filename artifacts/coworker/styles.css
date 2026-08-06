@@ -19,6 +19,7 @@ html, body {
 }
 
 .nav-toggle {
+  display: none;
   position: fixed;
   top: 14px;
   left: calc(var(--sidebar-width) + 16px);
