@@ -5,7 +5,7 @@ Executive-ready briefing site for the Blackbaud leadership discussion on Agentfo
 ## Site Structure
 
 - Executive Summary
-- Journey
+- Context
 - Dedicated capability page: Support Engineer Brief
 - Dedicated capability page: Knowledge-Grounded Answers
 - Dedicated capability page: Stakeholder Relationship Mapping
