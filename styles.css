@@ -38,6 +38,7 @@ body.nav-collapsed .nav-toggle { left: 14px; }
   display: grid;
   grid-template-columns: var(--sidebar-width) 1fr;
   min-height: 100vh;
+  overflow: hidden;
   transition: grid-template-columns 0.2s ease;
 }
 
