@@ -5,13 +5,18 @@ Executive-ready briefing site for the Blackbaud leadership discussion on Agentfo
 ## Site Structure
 
 - Executive Summary
-- External Research
+- Journey
 - Dedicated capability page: Support Engineer Brief
 - Dedicated capability page: Knowledge-Grounded Answers
 - Dedicated capability page: Stakeholder Relationship Mapping
 - Dedicated capability page: Delegated Action Loop
-- Recommended Decision Path
+- Capability Sequencing Map
+- Salesforce Domain Summary
+- External Research
+- Forward Looking Statement
 - Sidebar capability search (left navigation)
+- Persistent show/hide navigation control with saved state
+- Bottom previous/next walkthrough flow links
 
 ## Local Preview
 
