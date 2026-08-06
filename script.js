@@ -3,6 +3,7 @@ const capabilitySearchInput = document.querySelector("#capability-search-input")
 const sidebar = document.querySelector(".sidebar");
 const navToggle = document.querySelector("#nav-toggle");
 const navStateKey = "ccv-nav-collapsed";
+const logoPath = "public/salesforce-logo.jpg";
 
 const capabilitySearchIndex = [
   { code: "C1", name: "Support Engineer Brief", description: "Creates an instant pre-case brief from CRM service history, open issues, and recent interactions.", location: "Vignette 1", pageTitle: "Capability: Support Engineer Brief", pageHref: "capability-support-brief.html" },
@@ -38,6 +39,10 @@ navLinks.forEach((link) => {
 });
 
 document.querySelectorAll(".card").forEach((card) => card.classList.add("card-floating"));
+document.querySelectorAll(".salesforce-logo-wrap img").forEach((logo) => {
+  logo.src = logoPath;
+  logo.alt = "Salesforce logo";
+});
 
 if (capabilitySearchInput && sidebar) {
   const searchCard = document.createElement("div");
