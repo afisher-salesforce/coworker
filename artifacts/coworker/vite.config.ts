@@ -34,8 +34,13 @@ export default defineConfig({
       input: {
         main: path.resolve(import.meta.dirname, 'index.html'),
         executiveSummary: path.resolve(import.meta.dirname, 'executive-summary.html'),
+        context: path.resolve(import.meta.dirname, 'context.html'),
+        journey: path.resolve(import.meta.dirname, 'journey.html'),
         externalResearch: path.resolve(import.meta.dirname, 'external-research.html'),
+        forwardLookingStatement: path.resolve(import.meta.dirname, 'forward-looking-statement.html'),
         decisionPath: path.resolve(import.meta.dirname, 'decision-path.html'),
+        capabilityMap: path.resolve(import.meta.dirname, 'capability-map.html'),
+        salesforceSummary: path.resolve(import.meta.dirname, 'salesforce-summary.html'),
         supportBrief: path.resolve(import.meta.dirname, 'capability-support-brief.html'),
         knowledgeGrounding: path.resolve(import.meta.dirname, 'capability-knowledge-grounding.html'),
         stakeholderMap: path.resolve(import.meta.dirname, 'capability-stakeholder-map.html'),
