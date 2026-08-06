@@ -3,6 +3,23 @@ const capabilitySearchInput = document.querySelector("#capability-search-input")
 const sidebar = document.querySelector(".sidebar");
 const navToggle = document.querySelector("#nav-toggle");
 const navStateKey = "ccv-nav-collapsed";
+const logoAssetPath = "assets/salesforce-logo.jpg";
+
+function safeGetStorage(key) {
+  try {
+    return localStorage.getItem(key);
+  } catch {
+    return null;
+  }
+}
+
+function safeSetStorage(key, value) {
+  try {
+    localStorage.setItem(key, value);
+  } catch {
+    // Ignore storage failures in restricted embed contexts.
+  }
+}
 
 const capabilitySearchIndex = [
   { code: "C1", name: "Support Engineer Brief", description: "Creates an instant pre-case brief from CRM service history, open issues, and recent interactions.", location: "Vignette 1", pageTitle: "Capability: Support Engineer Brief", pageHref: "capability-support-brief.html" },
@@ -20,13 +37,13 @@ if (navToggle) {
     navToggle.textContent = collapsed ? "Show Navigation" : "Hide Navigation";
   };
 
-  const storedState = localStorage.getItem(navStateKey) === "true";
+  const storedState = safeGetStorage(navStateKey) === "true";
   setToggleState(storedState);
 
   navToggle.addEventListener("click", () => {
     const collapsed = !document.body.classList.contains("nav-collapsed");
     setToggleState(collapsed);
-    localStorage.setItem(navStateKey, String(collapsed));
+    safeSetStorage(navStateKey, String(collapsed));
   });
 }
 
@@ -38,6 +55,11 @@ navLinks.forEach((link) => {
 });
 
 document.querySelectorAll(".card").forEach((card) => card.classList.add("card-floating"));
+document.querySelectorAll(".salesforce-logo-wrap img").forEach((logo) => {
+  if (!logo.getAttribute("src") || logo.getAttribute("src").includes("public/salesforce-logo.jpg")) {
+    logo.src = logoAssetPath;
+  }
+});
 
 if (capabilitySearchInput && sidebar) {
   const searchCard = document.createElement("div");
