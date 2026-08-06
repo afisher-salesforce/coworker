@@ -30,6 +30,7 @@ html, body {
   padding: 8px 10px;
   font-size: 0.8rem;
   cursor: pointer;
+  display: none !important;
 }
 
 body.nav-collapsed .nav-toggle { left: 14px; }

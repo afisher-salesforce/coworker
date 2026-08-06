@@ -19,10 +19,6 @@ build = [ "pnpm", "--filter", "@workspace/coworker", "run", "build" ]
 serve = "static"
 publicDir = "artifacts/coworker/dist/public"
 
-[[services.production.rewrites]]
-from = "/*"
-to = "/index.html"
-
 [services.env]
 PORT = "22067"
 BASE_PATH = "/"
