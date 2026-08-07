@@ -226,7 +226,7 @@ body.nav-collapsed .sidebar {
 }
 
 .salesforce-logo-wrap {
-  margin-top: 10px;
+  margin-top: 0;
   background: transparent;
   border-radius: 0;
   padding: 0;
@@ -234,7 +234,9 @@ body.nav-collapsed .sidebar {
 }
 
 .salesforce-logo-wrap img {
-  max-width: 140px;
+  display: block;
+  width: 125px;
+  max-width: 100%;
   height: auto;
 }
 
