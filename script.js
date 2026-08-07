@@ -69,11 +69,13 @@ document.querySelectorAll(".salesforce-logo-wrap img").forEach((logo) => {
   if (!logo.getAttribute("src") || logo.getAttribute("src").includes("public/salesforce-logo.jpg")) {
     logo.src = logoAssetPath;
   }
+  logo.classList.add("brand-logo");
 });
 
 const brandBlock = document.querySelector(".sidebar .brand");
 const sidebarLogoWrap = document.querySelector(".sidebar .salesforce-logo-wrap");
 if (brandBlock && sidebarLogoWrap && !brandBlock.contains(sidebarLogoWrap)) {
+  sidebarLogoWrap.classList.add("logo-pill");
   brandBlock.appendChild(sidebarLogoWrap);
 }
 
