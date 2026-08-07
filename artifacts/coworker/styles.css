@@ -227,10 +227,10 @@ body.nav-collapsed .sidebar {
 
 .salesforce-logo-wrap {
   margin-top: 10px;
-  background: #ffffff;
-  border-radius: 10px;
-  padding: 10px 8px;
-  text-align: center;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  text-align: left;
 }
 
 .salesforce-logo-wrap img {
