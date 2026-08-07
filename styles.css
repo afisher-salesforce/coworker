@@ -240,6 +240,17 @@ body.nav-collapsed .sidebar {
   height: auto;
 }
 
+.logo-pill {
+  border-radius: 3px;
+  padding: 5px 9px;
+}
+
+.brand-logo {
+  height: 20px;
+  width: auto;
+  max-width: none;
+}
+
 .main-content {
   width: 100%;
 }
