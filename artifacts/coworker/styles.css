@@ -65,6 +65,7 @@ body.nav-collapsed .sidebar {
 .brand { margin-top: 26px; }
 .brand h1 { margin: 0; font-size: 1.5rem; }
 .brand .account-name { margin: 6px 0 0; color: #d9ecff; font-weight: 600; }
+.brand .salesforce-logo-wrap { margin-top: 12px; }
 
 .eyebrow {
   letter-spacing: 0.08em;

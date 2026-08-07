@@ -71,6 +71,12 @@ document.querySelectorAll(".salesforce-logo-wrap img").forEach((logo) => {
   }
 });
 
+const brandBlock = document.querySelector(".sidebar .brand");
+const sidebarLogoWrap = document.querySelector(".sidebar .salesforce-logo-wrap");
+if (brandBlock && sidebarLogoWrap && !brandBlock.contains(sidebarLogoWrap)) {
+  brandBlock.appendChild(sidebarLogoWrap);
+}
+
 if (capabilitySearchInput && sidebar) {
   const searchCard = document.createElement("div");
   searchCard.className = "capability-results-card hidden";
