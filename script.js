@@ -32,9 +32,19 @@ const normalize = (value) => value.toLowerCase().trim();
 const currentPath = window.location.pathname.split("/").pop() || "index.html";
 
 if (navToggle) {
+  const applySidebarLayout = (collapsed) => {
+    if (!sidebar) return;
+    sidebar.style.display = collapsed ? "none" : "";
+    const appShell = document.querySelector(".app-shell");
+    if (appShell) {
+      appShell.style.gridTemplateColumns = collapsed ? "0 1fr" : "";
+    }
+  };
+
   const setToggleState = (collapsed) => {
     document.body.classList.toggle("nav-collapsed", collapsed);
     navToggle.textContent = collapsed ? "Show Navigation" : "Hide Navigation";
+    applySidebarLayout(collapsed);
   };
 
   const storedState = safeGetStorage(navStateKey) === "true";
@@ -60,6 +70,12 @@ document.querySelectorAll(".salesforce-logo-wrap img").forEach((logo) => {
     logo.src = logoAssetPath;
   }
 });
+
+const brandBlock = document.querySelector(".sidebar .brand");
+const sidebarLogoWrap = document.querySelector(".sidebar .salesforce-logo-wrap");
+if (brandBlock && sidebarLogoWrap && !brandBlock.contains(sidebarLogoWrap)) {
+  brandBlock.appendChild(sidebarLogoWrap);
+}
 
 if (capabilitySearchInput && sidebar) {
   const searchCard = document.createElement("div");
