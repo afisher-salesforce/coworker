@@ -375,6 +375,34 @@ body.nav-collapsed .sidebar {
   font-size: 0.95rem;
 }
 
+.trailhead-enablement .card h4 {
+  margin-bottom: 10px;
+}
+
+.trailhead-enablement .card ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.trailhead-enablement .card li {
+  margin-bottom: 8px;
+}
+
+.trailhead-enablement .card a {
+  color: #9edfff;
+  text-decoration: none;
+}
+
+.trailhead-enablement .card a:hover {
+  text-decoration: underline;
+}
+
+.trailhead-source-note {
+  margin-top: 16px;
+  font-size: 0.82rem;
+  color: #9bb3cf;
+}
+
 @media (max-width: 1100px) {
   .nav-toggle {
     display: inline-block;

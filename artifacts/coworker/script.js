@@ -29,6 +29,143 @@ const capabilitySearchIndex = [
   { code: "C4", name: "Delegated Action Loop", description: "Combines grounded retrieval and delegated write actions to move from insight to execution in one flow.", location: "Vignette 4", pageTitle: "Capability: Delegated Action Loop", pageHref: "capability-delegated-action.html" },
 ];
 
+const trailheadEnablementByPage = {
+  "capability-support-brief.html": {
+    title: "Suggested Trailhead Enablement",
+    summary: "Build rapid service-readiness capability with role-specific learning paths aligned to support briefing and knowledge-led case resolution.",
+    tracks: [
+      {
+        role: "Service Admin",
+        links: [
+          { label: "Enhance Agentforce Service with Lightning Knowledge", href: "https://trailhead.salesforce.com/en/content/learn/trails/enhance-service-cloud-with-lightning-knowledge" },
+          { label: "Implement Agentforce Service", href: "https://trailhead.salesforce.com/en/content/learn/trails/implement-agentforce-service" },
+        ],
+      },
+      {
+        role: "Service Operations",
+        links: [
+          { label: "Build with Agentforce for Service", href: "https://trailhead.salesforce.com/en/content/learn/trails/build-with-agentforce-for-service" },
+          { label: "Discover Agentforce Service", href: "https://trailhead.salesforce.com/en/content/learn/trails/discover-agentforce-service" },
+        ],
+      },
+    ],
+  },
+  "capability-knowledge-grounding.html": {
+    title: "Suggested Trailhead Enablement",
+    summary: "Strengthen grounded response quality with prompt design, agent builder fluency, and trust-aware orchestration skills.",
+    tracks: [
+      {
+        role: "Prompt Designer",
+        links: [
+          { label: "Get Started with Prompts and Prompt Builder", href: "https://trailhead.salesforce.com/en/content/learn/trails/get-started-with-prompts-and-prompt-studio" },
+          { label: "Take a Tour of the New Agentforce Builder", href: "https://trailhead.salesforce.com/en/content/learn/trails/get-ready-for-the-new-agentforce-builder" },
+        ],
+      },
+      {
+        role: "Builder",
+        links: [
+          { label: "Build an AI Agent with Agentforce", href: "https://trailhead.salesforce.com/en/content/learn/trails/build-ai-assistants-with-einstein-copilot" },
+          { label: "Build with Agentforce for Service", href: "https://trailhead.salesforce.com/en/content/learn/trails/build-with-agentforce-for-service" },
+        ],
+      },
+    ],
+  },
+  "capability-stakeholder-map.html": {
+    title: "Suggested Trailhead Enablement",
+    summary: "Improve stakeholder intelligence and renewal planning with learning paths focused on pipeline analytics, selling models, and account optimization.",
+    tracks: [
+      {
+        role: "Sales Leader",
+        links: [
+          { label: "Agentforce Sales: Drive Pipeline Efficiency", href: "https://trailhead.salesforce.com/en/content/learn/trails/agentforce-sales-drive-pipeline-efficiency-with-analytics-and-ai" },
+          { label: "Optimize Sales Features for Lightning Experience", href: "https://trailhead.salesforce.com/en/content/learn/trails/sales_admin" },
+        ],
+      },
+      {
+        role: "Revenue Strategy",
+        links: [
+          { label: "Agentforce Sales: Become a Selling Specialist", href: "https://trailhead.salesforce.com/en/content/learn/trails/become-a-selling-specialist" },
+          { label: "Succeed with Relationship Selling", href: "https://trailhead.salesforce.com/en/content/learn/trails/succeed-with-relationship-selling" },
+        ],
+      },
+    ],
+  },
+  "capability-delegated-action.html": {
+    title: "Suggested Trailhead Enablement",
+    summary: "Operationalize delegated actions through low-code automation, flow control patterns, and agent action design.",
+    tracks: [
+      {
+        role: "Automation Admin",
+        links: [
+          { label: "Build Flows with Flow Builder", href: "https://trailhead.salesforce.com/en/content/learn/trails/build-flows-with-flow-builder" },
+          { label: "Implement Low-Code Automation", href: "https://trailhead.salesforce.com/en/content/learn/trails/implement-low-code-automation" },
+        ],
+      },
+      {
+        role: "Agent Builder",
+        links: [
+          { label: "Build Agentforce Solutions with Low-Code Tools", href: "https://trailhead.salesforce.com/en/content/learn/trails/build-agentforce-solutions-with-low-code-tools" },
+          { label: "Build an AI Agent with Agentforce", href: "https://trailhead.salesforce.com/en/content/learn/trails/build-ai-assistants-with-einstein-copilot" },
+        ],
+      },
+    ],
+  },
+  "capability-map.html": {
+    title: "Enablement Sequencing by Phase",
+    summary: "Use this learning path sequence to align delivery waves with workforce readiness, governance confidence, and measurable execution quality.",
+    tracks: [
+      {
+        role: "Phase 1: Foundations",
+        links: [
+          { label: "Get Started with Prompts and Prompt Builder", href: "https://trailhead.salesforce.com/en/content/learn/trails/get-started-with-prompts-and-prompt-studio" },
+          { label: "Build Agentforce Solutions with Low-Code Tools", href: "https://trailhead.salesforce.com/en/content/learn/trails/build-agentforce-solutions-with-low-code-tools" },
+        ],
+      },
+      {
+        role: "Phase 2: Data + Trust",
+        links: [
+          { label: "Unlock Your Data with Data Cloud", href: "https://trailhead.salesforce.com/en/content/learn/trails/unlock-your-data-with-data-cloud" },
+          { label: "Administer Data 360", href: "https://trailhead.salesforce.com/en/content/learn/trails/administer-customer-data-platform" },
+        ],
+      },
+      {
+        role: "Phase 3: Scale + Governance",
+        links: [
+          { label: "Build Your Architect Career on Salesforce", href: "https://trailhead.salesforce.com/en/content/learn/trails/salesforce-architect-careers" },
+          { label: "Secure Your Apps with Salesforce Shield", href: "https://trailhead.salesforce.com/en/content/learn/trails/shield" },
+        ],
+      },
+    ],
+  },
+  "salesforce-summary.html": {
+    title: "Role-Based Trailhead Enablement",
+    summary: "Curated learning recommendations connect each Salesforce domain to the skills required for durable adoption and governed scale.",
+    tracks: [
+      {
+        role: "Data & AI Domain",
+        links: [
+          { label: "Model Data in Data 360", href: "https://trailhead.salesforce.com/en/content/learn/trails/model-data-in-customer-data-platform" },
+          { label: "Use Data Insights Across Salesforce", href: "https://trailhead.salesforce.com/en/content/learn/trails/use-data-insights-across-cloud" },
+        ],
+      },
+      {
+        role: "Service Domain",
+        links: [
+          { label: "Build with Agentforce for Service", href: "https://trailhead.salesforce.com/en/content/learn/trails/build-with-agentforce-for-service" },
+          { label: "Enhance Agentforce Service with Lightning Knowledge", href: "https://trailhead.salesforce.com/en/content/learn/trails/enhance-service-cloud-with-lightning-knowledge" },
+        ],
+      },
+      {
+        role: "Integration Domain",
+        links: [
+          { label: "Get Started with MuleSoft Composer", href: "https://trailhead.salesforce.com/en/content/learn/trails/get-started-with-mulesoft-composer" },
+          { label: "Deliver IT Success with MuleSoft Catalyst", href: "https://trailhead.salesforce.com/en/content/learn/trails/deliver-it-success-with-mulesoft-catalyst" },
+        ],
+      },
+    ],
+  },
+};
+
 const normalize = (value) => value.toLowerCase().trim();
 const currentPath = window.location.pathname.split("/").pop() || "index.html";
 
@@ -171,4 +308,39 @@ if (capabilitySearchInput && sidebar) {
 
   updateSearch("");
   closeResultsCard();
+}
+
+const enablementContent = trailheadEnablementByPage[currentPath];
+if (enablementContent) {
+  const mainContent = document.querySelector(".main-content");
+  if (mainContent) {
+    const section = document.createElement("section");
+    section.className = "section trailhead-enablement";
+
+    const tracksHtml = enablementContent.tracks
+      .map(
+        (track) => `
+          <article class="card">
+            <h4>${track.role}</h4>
+            <ul>
+              ${track.links
+                .map(
+                  (link) =>
+                    `<li><a href="${link.href}" target="_blank" rel="noopener noreferrer">${link.label}</a></li>`,
+                )
+                .join("")}
+            </ul>
+          </article>
+        `,
+      )
+      .join("");
+
+    section.innerHTML = `
+      <h3>${enablementContent.title}</h3>
+      <p class="section-intro">${enablementContent.summary}</p>
+      <div class="card-grid three-up">${tracksHtml}</div>
+      <p class="trailhead-source-note">Enablement recommendations are curated from Salesforce Trailhead search results using the Trailhead MCP server.</p>
+    `;
+    mainContent.appendChild(section);
+  }
 }
