@@ -4,6 +4,7 @@ const sidebar = document.querySelector(".sidebar");
 const navToggle = document.querySelector("#nav-toggle");
 const navStateKey = "ccv-nav-collapsed";
 const logoAssetPath = "assets/salesforce-logo.jpg";
+const faviconAssetPath = "assets/blackbaud-favicon.png";
 
 function safeGetStorage(key) {
   try {
@@ -30,6 +31,17 @@ const capabilitySearchIndex = [
 
 const normalize = (value) => value.toLowerCase().trim();
 const currentPath = window.location.pathname.split("/").pop() || "index.html";
+
+const existingFavicon = document.querySelector('link[rel="icon"]');
+if (existingFavicon) {
+  existingFavicon.setAttribute("href", faviconAssetPath);
+} else {
+  const faviconLink = document.createElement("link");
+  faviconLink.setAttribute("rel", "icon");
+  faviconLink.setAttribute("type", "image/png");
+  faviconLink.setAttribute("href", faviconAssetPath);
+  document.head.appendChild(faviconLink);
+}
 
 if (navToggle) {
   const applySidebarLayout = (collapsed) => {
