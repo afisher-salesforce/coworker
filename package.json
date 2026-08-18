@@ -7,8 +7,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "build": "echo 'No build step required'",
-    "heroku-postbuild": "npm install --production",
+    "build": "echo 'Static site — no build step required'",
     "start": "node server.js"
   },
   "dependencies": {
