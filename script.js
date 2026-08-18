@@ -181,19 +181,9 @@ if (existingFavicon) {
 }
 
 if (navToggle) {
-  const applySidebarLayout = (collapsed) => {
-    if (!sidebar) return;
-    sidebar.style.display = collapsed ? "none" : "";
-    const appShell = document.querySelector(".app-shell");
-    if (appShell) {
-      appShell.style.gridTemplateColumns = collapsed ? "0 1fr" : "";
-    }
-  };
-
   const setToggleState = (collapsed) => {
     document.body.classList.toggle("nav-collapsed", collapsed);
     navToggle.textContent = collapsed ? "Show Navigation" : "Hide Navigation";
-    applySidebarLayout(collapsed);
   };
 
   const storedState = safeGetStorage(navStateKey) === "true";

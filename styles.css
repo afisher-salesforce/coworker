@@ -60,6 +60,7 @@ body.nav-collapsed .app-shell {
 body.nav-collapsed .sidebar {
   opacity: 0;
   pointer-events: none;
+  overflow: hidden;
 }
 
 .brand { margin-top: 26px; }
