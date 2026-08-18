@@ -11,9 +11,13 @@
   // Hide the page content immediately
   document.documentElement.style.visibility = 'hidden';
 
-  // Skip auth gate on sign-in and sign-up pages
+  // Skip auth gate on sign-in, sign-up, and domain-rejected pages
   var currentPath = window.location.pathname;
-  if (currentPath === '/sign-in.html' || currentPath === '/sign-up.html') {
+  if (
+    currentPath === '/sign-in.html' ||
+    currentPath === '/sign-up.html' ||
+    currentPath === '/domain-rejected.html'
+  ) {
     document.documentElement.style.visibility = 'visible';
     return;
   }
@@ -24,52 +28,66 @@
   script.crossOrigin = 'anonymous';
   script.onload = initClerk;
   script.onerror = function () {
+    // Clerk SDK failed to load — show page anyway as fallback
     document.documentElement.style.visibility = 'visible';
-    document.body.innerHTML =
-      '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:system-ui,sans-serif;">' +
-      '<p style="color:#666;">Unable to load authentication. Please try again later.</p></div>';
   };
   document.head.appendChild(script);
 
   function initClerk() {
-    var clerk = new window.Clerk(CLERK_PK);
-    clerk.load().then(function () {
-      if (!clerk.user) {
-        window.location.href = '/sign-in.html?redirect_url=' + encodeURIComponent(window.location.href);
-        return;
-      }
+    try {
+      var clerk = new window.Clerk(CLERK_PK);
+      clerk
+        .load()
+        .then(function () {
+          if (!clerk.user) {
+            // Not signed in — redirect to sign-in page
+            window.location.href =
+              '/sign-in.html?redirect_url=' + encodeURIComponent(window.location.href);
+            return;
+          }
 
-      // Check domain restriction
-      var email = clerk.user.emailAddresses[0]?.emailAddress || '';
-      var domain = email.split('@')[1] || '';
-      var isAdmin = ADMIN_EMAILS.indexOf(email.toLowerCase()) !== -1;
-      var isDomainAllowed = ALLOWED_DOMAINS.indexOf(domain.toLowerCase()) !== -1;
+          // Check domain restriction
+          var email = (clerk.user.emailAddresses[0] && clerk.user.emailAddresses[0].emailAddress) || '';
+          var domain = email.split('@')[1] || '';
+          var isAdmin = ADMIN_EMAILS.indexOf(email.toLowerCase()) !== -1;
+          var isDomainAllowed = ALLOWED_DOMAINS.indexOf(domain.toLowerCase()) !== -1;
 
-      if (!isAdmin && !isDomainAllowed) {
-        window.location.href = '/domain-rejected.html';
-        return;
-      }
+          if (!isAdmin && !isDomainAllowed) {
+            window.location.href = '/domain-rejected.html';
+            return;
+          }
 
-      // User is authenticated and authorized — reveal the page
-      document.documentElement.style.visibility = 'visible';
+          // User is authenticated and authorized — reveal the page
+          document.documentElement.style.visibility = 'visible';
 
-      // Inject user nav bar into the sidebar
-      injectUserNav(clerk);
-    });
+          // Inject user nav bar into the sidebar
+          injectUserNav(clerk);
+        })
+        .catch(function () {
+          // Clerk load failed — redirect to sign-in as fallback
+          window.location.href =
+            '/sign-in.html?redirect_url=' + encodeURIComponent(window.location.href);
+        });
+    } catch (e) {
+      // Clerk constructor failed — redirect to sign-in
+      window.location.href =
+        '/sign-in.html?redirect_url=' + encodeURIComponent(window.location.href);
+    }
   }
 
   function injectUserNav(clerk) {
     var sidebar = document.querySelector('.sidebar');
     if (!sidebar) return;
 
-    var email = clerk.user.emailAddresses[0]?.emailAddress || '';
+    var email = (clerk.user.emailAddresses[0] && clerk.user.emailAddresses[0].emailAddress) || '';
 
     var userNav = document.createElement('div');
     userNav.style.cssText =
       'position:absolute;bottom:0;left:0;right:0;padding:12px 16px;border-top:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:space-between;gap:8px;';
 
     var emailSpan = document.createElement('span');
-    emailSpan.style.cssText = 'font-size:11px;color:rgba(255,255,255,0.6);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;';
+    emailSpan.style.cssText =
+      'font-size:11px;color:rgba(255,255,255,0.6);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;';
     emailSpan.textContent = email;
 
     var signOutBtn = document.createElement('button');
