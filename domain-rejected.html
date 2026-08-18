@@ -77,23 +77,31 @@
       <a class="btn" id="sign-out-btn" href="/sign-in.html">Sign in with a different account</a>
     </div>
     <script
-      src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@5/dist/clerk.browser.js"
+      defer
       crossorigin="anonymous"
+      src="https://crisp-rodent-2474.clerk.accounts.dev/npm/@clerk/ui@1/dist/ui.browser.js"
+      type="text/javascript"
+    ></script>
+    <script
+      defer
+      crossorigin="anonymous"
+      data-clerk-publishable-key="pk_test_Y3Jpc3Atcm9kZW50LTI0NzQuY2xlcmsuYWNjb3VudHMuZGV2JA"
+      src="https://crisp-rodent-2474.clerk.accounts.dev/npm/@clerk/clerk-js@6/dist/clerk.browser.js"
+      type="text/javascript"
     ></script>
     <script>
-      (function () {
-        var clerk = new window.Clerk(
-          'pk_test_Y3Jpc3Atcm9kZW50LTI0NzQuY2xlcmsuYWNjb3VudHMuZGV2JA'
-        );
-        clerk.load().then(function () {
+      window.addEventListener('load', function () {
+        Clerk.load({
+          ui: { ClerkUI: window.__internal_ClerkUICtor },
+        }).then(function () {
           document.getElementById('sign-out-btn').addEventListener('click', function (e) {
             e.preventDefault();
-            clerk.signOut().then(function () {
+            Clerk.signOut().then(function () {
               window.location.href = '/sign-in.html';
             });
           });
         });
-      })();
+      });
     </script>
   </body>
 </html>

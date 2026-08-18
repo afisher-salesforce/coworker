@@ -52,44 +52,40 @@
       <div id="clerk-sign-up"></div>
     </div>
     <script
-      src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@5/dist/clerk.browser.js"
+      defer
       crossorigin="anonymous"
+      src="https://crisp-rodent-2474.clerk.accounts.dev/npm/@clerk/ui@1/dist/ui.browser.js"
+      type="text/javascript"
+    ></script>
+    <script
+      defer
+      crossorigin="anonymous"
+      data-clerk-publishable-key="pk_test_Y3Jpc3Atcm9kZW50LTI0NzQuY2xlcmsuYWNjb3VudHMuZGV2JA"
+      src="https://crisp-rodent-2474.clerk.accounts.dev/npm/@clerk/clerk-js@6/dist/clerk.browser.js"
+      type="text/javascript"
     ></script>
     <script>
-      (function () {
-        function showError(msg) {
+      window.addEventListener('load', function () {
+        Clerk.load({
+          ui: { ClerkUI: window.__internal_ClerkUICtor },
+        }).then(function () {
+          if (Clerk.user) {
+            window.location.href = '/';
+            return;
+          }
+          Clerk.mountSignUp(document.getElementById('clerk-sign-up'), {
+            signInUrl: '/sign-in.html',
+            afterSignUpUrl: '/',
+          });
+        }).catch(function (err) {
+          console.error('Clerk load error:', err);
           var el = document.getElementById('clerk-sign-up');
           if (el) {
             el.innerHTML =
-              '<p style="color:#ff6b6b;font-size:0.85rem;margin-top:1rem;">' +
-              msg + '</p>';
+              '<p style="color:#ff6b6b;font-size:0.85rem;margin-top:1rem;">Unable to load sign-up. Please try refreshing the page.</p>';
           }
-        }
-        try {
-          var clerk = new window.Clerk(
-            'pk_test_Y3Jpc3Atcm9kZW50LTI0NzQuY2xlcmsuYWNjb3VudHMuZGV2JA'
-          );
-          clerk
-            .load()
-            .then(function () {
-              if (clerk.user) {
-                window.location.href = '/';
-                return;
-              }
-              clerk.mountSignUp(document.getElementById('clerk-sign-up'), {
-                signInUrl: '/sign-in.html',
-                afterSignUpUrl: '/',
-              });
-            })
-            .catch(function (err) {
-              console.error('Clerk load error:', err);
-              showError('Unable to load sign-up. Please check that this domain is allowed in your Clerk dashboard.');
-            });
-        } catch (e) {
-          console.error('Clerk init error:', e);
-          showError('Unable to initialize authentication.');
-        }
-      })();
+        });
+      });
     </script>
   </body>
 </html>

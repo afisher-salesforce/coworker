@@ -1,10 +1,11 @@
 /**
  * Clerk Auth Gate for Blackbaud Coworker
- * Loads Clerk JS SDK, checks authentication and domain restrictions,
+ * Loads Clerk JS SDK (v6), checks authentication and domain restrictions,
  * then reveals page content or redirects to sign-in.
  */
 (function () {
   var CLERK_PK = 'pk_test_Y3Jpc3Atcm9kZW50LTI0NzQuY2xlcmsuYWNjb3VudHMuZGV2JA';
+  var FAPI = 'crisp-rodent-2474.clerk.accounts.dev';
   var ALLOWED_DOMAINS = ['blackbaud.com', 'salesforce.com'];
   var ADMIN_EMAILS = ['afisher@salesforce.com', 'bill.schermer@salesforce.com'];
 
@@ -22,24 +23,33 @@
     return;
   }
 
-  // Load Clerk SDK
-  var script = document.createElement('script');
-  script.src = 'https://cdn.jsdelivr.net/npm/@clerk/clerk-js@5/dist/clerk.browser.js';
-  script.crossOrigin = 'anonymous';
-  script.onload = initClerk;
-  script.onerror = function () {
+  // Load Clerk UI script first
+  var uiScript = document.createElement('script');
+  uiScript.src = 'https://' + FAPI + '/npm/@clerk/ui@1/dist/ui.browser.js';
+  uiScript.crossOrigin = 'anonymous';
+  uiScript.type = 'text/javascript';
+  document.head.appendChild(uiScript);
+
+  // Load Clerk SDK script
+  var sdkScript = document.createElement('script');
+  sdkScript.src = 'https://' + FAPI + '/npm/@clerk/clerk-js@6/dist/clerk.browser.js';
+  sdkScript.crossOrigin = 'anonymous';
+  sdkScript.type = 'text/javascript';
+  sdkScript.setAttribute('data-clerk-publishable-key', CLERK_PK);
+  sdkScript.onload = initClerk;
+  sdkScript.onerror = function () {
     // Clerk SDK failed to load — show page anyway as fallback
     document.documentElement.style.visibility = 'visible';
   };
-  document.head.appendChild(script);
+  document.head.appendChild(sdkScript);
 
   function initClerk() {
     try {
-      var clerk = new window.Clerk(CLERK_PK);
-      clerk
-        .load()
+      Clerk.load({
+        ui: { ClerkUI: window.__internal_ClerkUICtor },
+      })
         .then(function () {
-          if (!clerk.user) {
+          if (!Clerk.user) {
             // Not signed in — redirect to sign-in page
             window.location.href =
               '/sign-in.html?redirect_url=' + encodeURIComponent(window.location.href);
@@ -47,7 +57,7 @@
           }
 
           // Check domain restriction
-          var email = (clerk.user.emailAddresses[0] && clerk.user.emailAddresses[0].emailAddress) || '';
+          var email = (Clerk.user.emailAddresses[0] && Clerk.user.emailAddresses[0].emailAddress) || '';
           var domain = email.split('@')[1] || '';
           var isAdmin = ADMIN_EMAILS.indexOf(email.toLowerCase()) !== -1;
           var isDomainAllowed = ALLOWED_DOMAINS.indexOf(domain.toLowerCase()) !== -1;
@@ -61,7 +71,7 @@
           document.documentElement.style.visibility = 'visible';
 
           // Inject user nav bar into the sidebar
-          injectUserNav(clerk);
+          injectUserNav();
         })
         .catch(function () {
           // Clerk load failed — redirect to sign-in as fallback
@@ -69,17 +79,17 @@
             '/sign-in.html?redirect_url=' + encodeURIComponent(window.location.href);
         });
     } catch (e) {
-      // Clerk constructor failed — redirect to sign-in
+      // Clerk initialization failed — redirect to sign-in
       window.location.href =
         '/sign-in.html?redirect_url=' + encodeURIComponent(window.location.href);
     }
   }
 
-  function injectUserNav(clerk) {
+  function injectUserNav() {
     var sidebar = document.querySelector('.sidebar');
     if (!sidebar) return;
 
-    var email = (clerk.user.emailAddresses[0] && clerk.user.emailAddresses[0].emailAddress) || '';
+    var email = (Clerk.user.emailAddresses[0] && Clerk.user.emailAddresses[0].emailAddress) || '';
 
     var userNav = document.createElement('div');
     userNav.style.cssText =
@@ -103,7 +113,7 @@
       signOutBtn.style.color = 'rgba(255,255,255,0.7)';
     };
     signOutBtn.onclick = function () {
-      clerk.signOut().then(function () {
+      Clerk.signOut().then(function () {
         window.location.href = '/sign-in.html';
       });
     };
