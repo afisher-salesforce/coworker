@@ -57,20 +57,40 @@
     ></script>
     <script>
       (function () {
-        var clerk = new window.Clerk(
-          'pk_test_Y3Jpc3Atcm9kZW50LTI0NzQuY2xlcmsuYWNjb3VudHMuZGV2JA'
-        );
-        clerk.load().then(function () {
-          if (clerk.user) {
-            var params = new URLSearchParams(window.location.search);
-            window.location.href = params.get('redirect_url') || '/';
-            return;
+        function showError(msg) {
+          var el = document.getElementById('clerk-sign-in');
+          if (el) {
+            el.innerHTML =
+              '<p style="color:#ff6b6b;font-size:0.85rem;margin-top:1rem;">' +
+              msg + '</p>';
           }
-          clerk.mountSignIn(document.getElementById('clerk-sign-in'), {
-            signUpUrl: '/sign-up.html',
-            afterSignInUrl: new URLSearchParams(window.location.search).get('redirect_url') || '/',
-          });
-        });
+        }
+        try {
+          var clerk = new window.Clerk(
+            'pk_test_Y3Jpc3Atcm9kZW50LTI0NzQuY2xlcmsuYWNjb3VudHMuZGV2JA'
+          );
+          clerk
+            .load()
+            .then(function () {
+              if (clerk.user) {
+                var params = new URLSearchParams(window.location.search);
+                window.location.href = params.get('redirect_url') || '/';
+                return;
+              }
+              clerk.mountSignIn(document.getElementById('clerk-sign-in'), {
+                signUpUrl: '/sign-up.html',
+                afterSignInUrl:
+                  new URLSearchParams(window.location.search).get('redirect_url') || '/',
+              });
+            })
+            .catch(function (err) {
+              console.error('Clerk load error:', err);
+              showError('Unable to load sign-in. Please check that this domain is allowed in your Clerk dashboard.');
+            });
+        } catch (e) {
+          console.error('Clerk init error:', e);
+          showError('Unable to initialize authentication.');
+        }
       })();
     </script>
   </body>
