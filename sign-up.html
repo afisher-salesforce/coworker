@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up — Agentforce Coworker</title>
+    <link rel="icon" type="image/png" href="assets/blackbaud-favicon.png" />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: radial-gradient(circle at top right, #10253d 0%, #07111d 45%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .auth-container {
+        text-align: center;
+        padding: 2rem;
+      }
+      .auth-container h1 {
+        color: #fff;
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+      }
+      .auth-container .eyebrow {
+        color: #00a1df;
+        font-size: 0.73rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+      .auth-container p.subtitle {
+        color: rgba(255,255,255,0.5);
+        font-size: 0.9rem;
+        margin-bottom: 2rem;
+      }
+      #clerk-sign-up {
+        display: flex;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="auth-container">
+      <p class="eyebrow">Executive Briefing</p>
+      <h1>Agentforce Coworker</h1>
+      <p class="subtitle">Create your account</p>
+      <div id="clerk-sign-up"></div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@5/dist/clerk.browser.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      (function () {
+        var clerk = new window.Clerk(
+          'pk_test_Y3Jpc3Atcm9kZW50LTI0NzQuY2xlcmsuYWNjb3VudHMuZGV2JA'
+        );
+        clerk.load().then(function () {
+          if (clerk.user) {
+            window.location.href = '/';
+            return;
+          }
+          clerk.mountSignUp(document.getElementById('clerk-sign-up'), {
+            signInUrl: '/sign-in.html',
+            afterSignUpUrl: '/',
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
